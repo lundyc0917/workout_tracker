@@ -1,8 +1,24 @@
 const db = require("../models");
 const router = require("express").Router();
 
-// TODO: Add a new exercise
+// Add a new exercise
+router.put("/api/workouts/:id", (request, res) => {
+  db.Workout.findOneAndUpdate(
+    { _id: request.params.id },
+    { $push: { exercises: request.body } },
+    { new: true }
+  )
+    .then((dbWorkout) => {
+      res.json(dbWorkout);
+    })
+    .catch((err) => {
+      res.json(err);
+    });
+});
+
 // TODO: Create a new workout
+
+
 // TODO: Show stats using range
 
 // Create new field for total duration of workouts using $addFields aggregation
