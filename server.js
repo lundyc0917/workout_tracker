@@ -1,4 +1,5 @@
 var express = require("express");
+var logger = require("morgan");
 var mongoose = require("mongoose");
 
 var PORT = process.env.PORT || 8080;
@@ -13,7 +14,7 @@ app.use(express.static("public"));
 
 // Connect to Mongo
 mongoose.connect(
-  process.env.ATLAS_URI,
+  process.env.ATLAS_URI  || "mongodb://localhost/workout",
   {
     useNewUrlParser: true,
     useFindAndModify: false,
@@ -27,5 +28,5 @@ app.use(require("./routes/apiRoutes.js"));
 app.use(require("./routes/htmlRoutes.js"));
 
 app.listen(PORT, () => {
-  console.log(`App running on port ${PORT}!`);
+  console.log(`Running on localhost:${PORT}!`);
 });
