@@ -2,7 +2,7 @@ const db = require("../models");
 const router = require("express").Router();
 
 // Add a new exercise
-router.put("/api/workouts/:id", (request, res) => {
+router.put("/api/workout/:id", (request, res) => {
   db.Workout.findOneAndUpdate(
     { _id: request.params.id },
     { $push: { exercises: request.body } },

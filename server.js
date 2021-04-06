@@ -14,10 +14,12 @@ app.use(express.static("public"));
 
 // Connect to Mongo
 mongoose.connect(
-  process.env.ATLAS_URI  || "mongodb://localhost/workout",
+  process.env.MONGODB_URI || 'mongodb://localhost/workout',
   {
     useNewUrlParser: true,
-    useFindAndModify: false,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useFindAndModify: false
   },
   () => {
     console.log("Connected to Mongo");
